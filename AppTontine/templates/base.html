@@ -29,11 +29,14 @@
 
         {% include "header.html" %}    
 
-        {% include "team.html" %}  
+        {% block  team-caroussel %}
+        
+        {% endblock  %}
 
-        {% include "caroussel.html" %}  
 
         {% include "footer.html" %}  
+
+
 
             <script src= "{% static 'script.js' %}">
             
