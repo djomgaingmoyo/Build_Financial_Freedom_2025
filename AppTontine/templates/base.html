@@ -1,0 +1,43 @@
+{% load static %}  
+
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Association Sinceres et Solidaire - Ensemble pour un monde meilleur</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <style>
+            .carousel-item {
+                transition: transform 0.6s ease-in-out;
+            }
+            .carousel-item.hidden {
+                display: none;
+            }
+            .carousel-item.visible {
+                display: block;
+            }
+            .team-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+        </style>
+    </head>
+
+    <body class="font-sans bg-gray-50">
+
+        {% include "header.html" %}    
+
+        {% include "team.html" %}  
+
+        {% include "caroussel.html" %}  
+
+        {% include "footer.html" %}  
+
+            <script src= "{% static 'script.js' %}">
+            
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,60 @@
+<!-- Activities Carousel -->
+    <section id="activities" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Nos dernières activités</h2>
+            
+            <div class="relative max-w-4xl mx-auto">
+                <!-- Carousel Container -->
+                <div class="carousel-container overflow-hidden rounded-xl shadow-xl">
+                    <!-- Carousel Items -->
+                    <div class="carousel-item visible relative">
+                        <img src="https://images.unsplash.com/photo-1527525443983-6e60c75fff46?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Activité 1" class="w-full h-96 object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
+                            <h3 class="text-2xl font-bold text-white mb-2">Distribution alimentaire</h3>
+                            <p class="text-gray-200">15 juin 2023 - Nous avons distribué 200 repas aux sans-abri du centre-ville grâce à nos bénévoles.</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item hidden relative">
+                        <img src="https://images.unsplash.com/photo-1526779259212-939e64788e3c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Activité 2" class="w-full h-96 object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
+                            <h3 class="text-2xl font-bold text-white mb-2">Nettoyage de plage</h3>
+                            <p class="text-gray-200">3 juin 2023 - 50 bénévoles ont collecté 300kg de déchets sur la plage de la Grande Côte.</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item hidden relative">
+                        <img src="https://images.unsplash.com/photo-1529333164857-0f8a02243d8a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Activité 3" class="w-full h-96 object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
+                            <h3 class="text-2xl font-bold text-white mb-2">Atelier recyclage</h3>
+                            <p class="text-gray-200">27 mai 2023 - Nous avons organisé un atelier pour apprendre à recycler et réutiliser ses déchets.</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item hidden relative">
+                        <img src="https://images.unsplash.com/photo-1541178735493-479c1a27ed24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Activité 4" class="w-full h-96 object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
+                            <h3 class="text-2xl font-bold text-white mb-2">Soutien scolaire</h3>
+                            <p class="text-gray-200">20 mai 2023 - Lancement de notre programme de soutien scolaire pour les enfants défavorisés.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carousel Controls -->
+                <button id="prevBtn" class="absolute left-0 top-1/2 -translate-y-1/2 -ml-12 bg-white bg-opacity-80 text-orange-600 w-10 h-10 rounded-full shadow-md hover:bg-opacity-100 transition duration-300">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button id="nextBtn" class="absolute right-0 top-1/2 -translate-y-1/2 -mr-12 bg-white bg-opacity-80 text-orange-600 w-10 h-10 rounded-full shadow-md hover:bg-opacity-100 transition duration-300">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <!-- Indicators -->
+                <div class="flex justify-center mt-4 space-x-2">
+                    <button class="indicator w-3 h-3 rounded-full bg-orange-300 hover:bg-orange-500 transition duration-300" data-index="0"></button>
+                    <button class="indicator w-3 h-3 rounded-full bg-orange-300 hover:bg-orange-500 transition duration-300" data-index="1"></button>
+                    <button class="indicator w-3 h-3 rounded-full bg-orange-300 hover:bg-orange-500 transition duration-300" data-index="2"></button>
+                    <button class="indicator w-3 h-3 rounded-full bg-orange-300 hover:bg-orange-500 transition duration-300" data-index="3"></button>
+                </div>
+            </div>
+        </div>
+    </section>
