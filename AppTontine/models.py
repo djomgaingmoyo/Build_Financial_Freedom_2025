@@ -15,7 +15,7 @@ class Couple(models.Model):
     nom = models.CharField(
         max_length=100,
         unique=True,
-        help_text="Format: 'Couple NOM1-NOM2'"
+        help_text="Format: 'Couple NOM1_MARI-NOM2_FEMME'"
     )
     date_creation = models.DateField(auto_now_add=True)
     adresse_couple = models.CharField(max_length=300)
