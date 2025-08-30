@@ -159,7 +159,7 @@ class Cotisation(models.Model):
         decimal_places=2,
         validators=[MinValueValidator(0)]
     )
-    date_paiement = models.DateField()
+    date_paiement = models.DateField(auto_now_add=True)
     est_valide = models.BooleanField(default=False)
 
     def clean(self):
