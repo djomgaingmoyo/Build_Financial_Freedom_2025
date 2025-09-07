@@ -83,7 +83,7 @@ function initCotisation() {
         });
         
         // Teste avec la première option si elle est sélectionnée
-        if (selectElement.value) {
+        if (selectElement.value && selectElement.selectedIndex > 0) {
             updateBeneficiaires(selectElement);
         }
     } else {
