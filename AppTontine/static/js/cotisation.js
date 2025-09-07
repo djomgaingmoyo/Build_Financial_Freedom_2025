@@ -3,10 +3,13 @@
 
 // Fonction pour extraire les noms du couple
 function extractNomsCouple(nomComplet) {
-    // Vérification et extraction plus robuste
+    console.log('Nom complet reçu:', nomComplet);
     if (!nomComplet) return { beneficiaire1: 'Membre 1', beneficiaire2: 'Membre 2' };
     
-    const noms = nomComplet.replace('Couple ', '').split(' et ');
+    // Méthode plus robuste pour extraire les noms
+    const noms = nomComplet.replace(/^Couple\s+/i, '').split(/\s+et\s+/);
+    console.log('Noms après split:', noms);
+    
     return {
         beneficiaire1: noms[0]?.trim() || 'Membre 1',
         beneficiaire2: noms[1]?.trim() || 'Membre 2'
@@ -15,26 +18,40 @@ function extractNomsCouple(nomComplet) {
 
 // Fonction appelée quand la sélection change
 function updateBeneficiaires(selectElement) {
-    console.log('Fonction appelée'); // Debug
+    console.log('=== updateBeneficiaires appelée ===');
+    console.log('Element sélectionné:', selectElement);
+    console.log('Valeur sélectionnée:', selectElement.value);
     
     const selectedOption = selectElement.options[selectElement.selectedIndex];
-    console.log('Option sélectionnée:', selectedOption.value); // Debug
+    console.log('Option complète:', selectedOption);
     
     if (selectedOption.value && selectedOption.value !== "") {
         const nomCouple = selectedOption.getAttribute('data-nom');
-        console.log('Nom du couple:', nomCouple); // Debug
+        console.log('Data-nom trouvé:', nomCouple);
         
-        const noms = extractNomsCouple(nomCouple);
-        console.log('Noms extraits:', noms); // Debug
-        
-        // Met à jour les labels
-        document.getElementById('beneficiaire1').textContent = noms.beneficiaire1;
-        document.getElementById('beneficiaire2').textContent = noms.beneficiaire2;
-        
-        // Active les champs de montant
-        document.getElementById('montantMembre1').disabled = false;
-        document.getElementById('montantMembre2').disabled = false;
+        if (nomCouple) {
+            const noms = extractNomsCouple(nomCouple);
+            console.log('Noms extraits:', noms);
+            
+            // Met à jour les labels
+            const benef1 = document.getElementById('beneficiaire1');
+            const benef2 = document.getElementById('beneficiaire2');
+            
+            if (benef1 && benef2) {
+                benef1.textContent = noms.beneficiaire1;
+                benef2.textContent = noms.beneficiaire2;
+                
+                // Active les champs de montant
+                document.getElementById('montantMembre1').disabled = false;
+                document.getElementById('montantMembre2').disabled = false;
+            } else {
+                console.error('Elements beneficiaire1 ou beneficiaire2 non trouvés');
+            }
+        } else {
+            console.error('Attribut data-nom non trouvé sur l\'option');
+        }
     } else {
+        console.log('Aucune valeur sélectionnée');
         // Réinitialise si aucun couple sélectionné
         document.getElementById('beneficiaire1').textContent = '[Sélectionnez un couple]';
         document.getElementById('beneficiaire2').textContent = '[Sélectionnez un couple]';
@@ -44,17 +61,43 @@ function updateBeneficiaires(selectElement) {
 }
 
 // Initialisation quand la page est chargée
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Page chargée'); // Debug
+function initCotisation() {
+    console.log('=== Initialisation de la page cotisation ===');
     
-    // Désactive les champs de montant initialement
-    document.getElementById('montantMembre1').disabled = true;
-    document.getElementById('montantMembre2').disabled = true;
+    // Vérifie que les éléments existent
+    const selectElement = document.getElementById('C_beneficiaire');
+    const montant1 = document.getElementById('montantMembre1');
+    const montant2 = document.getElementById('montantMembre2');
     
-    // Ajoute un écouteur d'événement pour tester
-    document.getElementById('C_beneficiaire').addEventListener('change', function() {
-        console.log('Change event triggered'); // Debug
-        updateBeneficiaires(this);
-    });
-});
+    if (selectElement && montant1 && montant2) {
+        console.log('Tous les éléments trouvés');
+        
+        // Désactive les champs de montant initialement
+        montant1.disabled = true;
+        montant2.disabled = true;
+        
+        // Ajoute l'écouteur d'événement
+        selectElement.addEventListener('change', function() {
+            console.log('Événement change détecté');
+            updateBeneficiaires(this);
+        });
+        
+        // Teste avec la première option si elle est sélectionnée
+        if (selectElement.value) {
+            updateBeneficiaires(selectElement);
+        }
+    } else {
+        console.error('Éléments manquants:', {
+            select: !!selectElement,
+            montant1: !!montant1,
+            montant2: !!montant2
+        });
+    }
+}
 
+// Lance l'initialisation quand la page est prête
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCotisation);
+} else {
+    initCotisation();
+}
