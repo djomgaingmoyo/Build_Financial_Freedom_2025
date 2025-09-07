@@ -23,6 +23,6 @@ def Cotiser(request):
         savedonnees.save()
         return redirect('home')
     else:
-        couple_beneficiaire=Couple.objects.get(pk=request.POST['C_beneficiaire'])
-        payeur=Membre.objects.get(pk=request.POST['payeur'])
-    return render(request, 'Cotiser.html')
+        couple_beneficiaire=Couple.objects.all
+        payeur=Membre.objects.all
+    return render(request, 'Cotiser.html',{"couple_beneficiaire":couple_beneficiaire,"payeur":payeur})
