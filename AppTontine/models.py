@@ -42,21 +42,34 @@ class Membre(models.Model):
         related_name='membres'
     )
 
+    def clean(self):
+        """Validation : maximum 2 membres par couple"""
+        from django.core.exceptions import ValidationError
+        
+        if self.couple:
+            # Membres existants (exclure l'instance actuelle)
+            membres_existants = Membre.objects.filter(
+                couple=self.couple
+            ).exclude(pk=self.pk)
+            
+            if membres_existants.count() >= 2:
+                raise ValidationError(
+                    f"Le couple {self.couple} a déjà 2 membres. Maximum atteint."
+                )
+
+    def save(self, *args, **kwargs):
+        self.clean()
+        super().save(*args, **kwargs)
+
     class Meta:
         ordering = ['user__last_name']
         verbose_name = "Membre"
         verbose_name_plural = "Membres"
-        constraints = [
-            models.UniqueConstraint(
-                fields=['couple'],
-                condition=models.Q(couple__isnull=False),
-                name='max_2_membres_par_couple'
-            )
-        ]
+        # ⚠️ PLUS de contrainte UniqueConstraint !
 
     def __str__(self):
         return f"{self.user.get_full_name()} ({self.couple.nom})"
-
+    
 class Tontine(models.Model):
     """
     Tontine annuelle avec 12 tours (1 par mois)
